@@ -4,9 +4,30 @@
 
 可显示性能模式、键盘背光亮度、Fn 锁定、触控板开关，以及 Caps Lock / Num Lock 状态。
 
+## 用 AI 安装（推荐）
+
+在目标 Linux 电脑上打开 Claude Code、Codex 或其他能执行本机命令的 AI 编程助手，把下面这段话发给它：
+
+```text
+请阅读这个仓库，并帮我在当前 Linux 电脑上安装、配置和测试：
+https://github.com/wearzdk/mechrevo-osd-linux
+
+先读取仓库的 AGENTS.md，检查我的机型、内核、桌面环境和现有安装，
+选择合适的安装方式，配置登录启动，并验证按键状态提示。
+
+如果我的型号与已支持型号不完全一致，请按仓库的机型适配指南，
+检测硬件接口、采集事件并尝试适配；需要我配合按键测试时告诉我。
+如果产生了新的适配代码，测试通过后请提交 PR，帮助更多人使用。
+最后告诉我哪些功能已验证，以及如何更新或卸载。
+```
+
+让 AI 负责检查环境、安装依赖和处理配置，你按提示完成实体按键测试即可。**其他型号也欢迎尝试适配**，成功后可以让 AI 把改动和测试结果整理成 PR。
+
+仓库提供 [AGENTS.md](AGENTS.md) 作为 AI 工作入口，[CLAUDE.md](CLAUDE.md) 引用同一套指引。后面的依赖、安装和排查说明主要供 AI 执行时查阅，也可以用于手动安装。
+
 ## 兼容性
 
-当前适配机型：**MECHREVO WUJIE Series-T142-HPT-R**。其他型号有待适配。
+当前已适配机型：**MECHREVO WUJIE Series-T142-HPT-R**。型号不完全一致时，可让 AI 按 [机型适配指南](docs/hardware-adaptation.md) 检查接口并测试适配。提交新机型支持请参考 [贡献指南](CONTRIBUTING.md)。
 
 程序根据当前会话自动选择显示方式：
 
@@ -35,6 +56,8 @@ sudo pacman -S --needed base-devel dkms pyside6 qt6-declarative qt6-wayland pyth
 ```
 
 ## 安装
+
+**AI 执行入口：**先阅读 [AGENTS.md](AGENTS.md)，再根据本机情况选择下面的安装路径；需要修改型号支持时，转到 [机型适配指南](docs/hardware-adaptation.md)。
 
 ### AUR
 
