@@ -25,10 +25,10 @@ dkms status
 
 ## 安装决策
 
-- Arch Linux 上，已有机型支持优先使用 AUR 的 `mechrevo-osd-linux`，驱动由 `mechrevo-osd-dkms` 提供。其他发行版或本地适配使用源码安装。
+- Arch Linux 上，已有机型支持优先使用 AUR 的 `mechrevo-osd-linux`，驱动由 `mechrevo-osd-dkms` 提供。其他发行版或本地适配使用源码安装。完整安装、迁移与卸载步骤见 [安装与维护](docs/installation.md)（[English](docs/installation.en.md)）。
 - 修改过的本地代码按源码或本地包验证；已发布 AUR 包不包含尚未合入的修改。
 - 依赖使用发行版包管理器查询和安装。当前运行环境使用系统 Python、PySide6、Qt Quick 和 dbus-python；`pyproject.toml` 的空依赖列表不是完整的系统依赖清单。
-- 核对当前内核及所有已安装内核的头文件，读取 `driver/dkms.conf` 确认模块版本。AUR 由 pacman 的 DKMS 钩子处理模块，源码安装按 README 手动注册。
+- 核对当前内核及所有已安装内核的头文件，读取 `driver/dkms.conf` 确认模块版本。AUR 由 pacman 的 DKMS 钩子处理模块，源码安装按 [安装指南](docs/installation.md) 手动注册。
 - 区分 `/usr` 的包管理器安装和 `/usr/local` 的源码安装。迁移前保存旧配置，停止旧进程，清理旧启动入口对新版本的覆盖。
 - 按会话能力选择 `auto`、`layer-shell`、`x11` 或 `notifications`。图形进程运行在桌面用户会话中，管理员权限用于模块和系统服务。
 - XDG Autostart、窗口管理器启动命令和用户服务选择一种。使用用户服务前确认桌面管理 `graphical-session.target` 且用户服务具有当前显示会话环境。
