@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.venv/
+driver/*.o
+driver/*.ko
+driver/*.mod*
+driver/.*.cmd
+driver/Module.symvers
+driver/modules.order
+dist/

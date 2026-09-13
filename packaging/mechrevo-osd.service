@@ -1,0 +1,16 @@
+[Unit]
+Description=MECHREVO hardware OSD
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+Type=simple
+RuntimeDirectory=mechrevo-osd
+ExecStart=/usr/bin/python3 /usr/local/lib/mechrevo-osd-linux/mechrevo_osd.py
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=%h/.config
+
+[Install]
+WantedBy=graphical-session.target

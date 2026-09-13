@@ -1,0 +1,16 @@
+[Unit]
+Description=Bind MECHREVO firmware events to the read-only OSD transport
+After=systemd-udev-trigger.service
+Before=display-manager.service
+ConditionPathExistsGlob=/sys/bus/wmi/devices/46C93E13-EE9B-4262-8488-563BCA757FEF-*
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+RuntimeDirectory=mechrevo-osd-binding
+RuntimeDirectoryMode=0700
+ExecStart=/usr/bin/python3 /usr/local/lib/mechrevo-osd-linux/bind-events.py bind
+ExecStop=/usr/bin/python3 /usr/local/lib/mechrevo-osd-linux/bind-events.py restore
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=MECHREVO OSD
+Comment=Display keyboard and firmware status
+Exec=/usr/local/bin/mechrevo-osd
+Icon=input-keyboard
+Terminal=false
+NoDisplay=true
+Categories=Utility;

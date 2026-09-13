@@ -1,0 +1,2 @@
+#!/bin/sh
+exec /usr/bin/python3 /usr/local/lib/mechrevo-osd-linux/mechrevo_osd.py "$@"

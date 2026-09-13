@@ -1,0 +1,3 @@
+# Grant the active local desktop access to this firmware-only event device.
+# This device carries no ordinary keyboard keys.
+SUBSYSTEM=="input", KERNEL=="event*", ATTRS{name}=="MECHREVO OSD firmware events", TAG+="uaccess"
