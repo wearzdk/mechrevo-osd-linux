@@ -22,7 +22,7 @@
 
 ## 依赖
 
-- Linux：当前在 7.2.4 内核上验证；旧内核兼容性待适配。
+- Linux：支持 6.18 LTS 和 7.2 系列内核。
 - Python 3.10+、PySide6（Qt Quick / Qt QML）。推荐使用发行版提供的匹配版本。
 - DKMS、当前内核对应的头文件、C 编译工具、make、systemd/udev。
 - Wayland 悬浮显示：`wayland-info` 和 `layer-shell-qt` 的 QML 模块，适用于支持 layer-shell 的合成器。
@@ -47,8 +47,8 @@ uname -r
 
 ```sh
 sudo make install
-sudo dkms add -m mechrevo-osd -v 0.1.0
-sudo dkms install -m mechrevo-osd -v 0.1.0
+sudo dkms add -m mechrevo-osd -v 0.1.1
+sudo dkms install -m mechrevo-osd -v 0.1.1
 sudo udevadm control --reload-rules
 sudo udevadm trigger --subsystem-match=input
 sudo udevadm settle
@@ -89,13 +89,13 @@ systemctl --user enable --now mechrevo-osd.service
 
 ## 升级或重新安装
 
-先停止图形进程，再停止绑定服务，然后移除旧 DKMS 注册；接着执行安装步骤。已有用户服务可用以下命令停止：
+先停止图形进程，再停止绑定服务，然后移除旧 DKMS 注册（版本号按 `dkms status` 的结果填写）；接着执行安装步骤。已有用户服务可用以下命令停止：
 
 ```sh
 systemctl --user stop mechrevo-osd.service
 sudo systemctl stop mechrevo-osd-binding.service
 sudo modprobe -r mechrevo_osd_wmi
-sudo dkms remove -m mechrevo-osd -v 0.1.0 --all
+sudo dkms remove -m mechrevo-osd -v 0.1.1 --all
 ```
 
 安装完成后重新启动绑定服务和图形进程，使新版本生效。
@@ -117,7 +117,7 @@ systemctl --user daemon-reload
 ```sh
 sudo systemctl disable --now mechrevo-osd-binding.service
 sudo modprobe -r mechrevo_osd_wmi
-sudo dkms remove -m mechrevo-osd -v 0.1.0 --all
+sudo dkms remove -m mechrevo-osd -v 0.1.1 --all
 sudo make uninstall
 sudo systemctl daemon-reload
 sudo udevadm control --reload-rules

@@ -43,12 +43,19 @@ static int osd_probe(struct wmi_device *wdev, const void *context)
 	return input_register_device(input);
 }
 
-static void osd_notify(struct wmi_device *wdev, const struct wmi_buffer *buffer)
+static void osd_notify(struct wmi_device *wdev, union acpi_object *object)
 {
 	struct event_transport *transport = dev_get_drvdata(&wdev->dev);
 	struct input_dev *input = transport->input;
-	const u8 *event = buffer->data;
+	const u8 *event;
 	unsigned long flags;
+
+	if (!object || object->type != ACPI_TYPE_BUFFER ||
+	    object->buffer.length < 8 || !object->buffer.pointer) {
+		dev_warn_ratelimited(&wdev->dev, "Invalid firmware event payload\n");
+		return;
+	}
+	event = object->buffer.pointer;
 
 	spin_lock_irqsave(&transport->lock, flags);
 	input_event(input, EV_MSC, MSC_SERIAL, get_unaligned_le32(event));
@@ -68,9 +75,8 @@ static struct wmi_driver osd_driver = {
 	.driver = { .name = "mechrevo-osd-wmi" },
 	.no_singleton = true,
 	.id_table = osd_ids,
-	.min_event_size = 8,
 	.probe = osd_probe,
-	.notify_new = osd_notify,
+	.notify = osd_notify,
 };
 module_wmi_driver(osd_driver);
 MODULE_LICENSE("GPL");
