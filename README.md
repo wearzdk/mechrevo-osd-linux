@@ -36,6 +36,21 @@ sudo pacman -S --needed base-devel dkms pyside6 qt6-declarative qt6-wayland pyth
 
 ## 安装
 
+### AUR
+
+Arch Linux 用户可安装 [mechrevo-osd-linux](https://aur.archlinux.org/packages/mechrevo-osd-linux)，会自动依赖 [mechrevo-osd-dkms](https://aur.archlinux.org/packages/mechrevo-osd-dkms) 驱动包。请先安装当前内核对应的头文件包。
+
+```sh
+yay -S mechrevo-osd-linux
+sudo systemctl enable --now mechrevo-osd-binding.service
+mechrevo-osd --check --check-display
+mechrevo-osd
+```
+
+AUR 版本的登录启动、升级和卸载步骤见 [Arch 使用说明](https://aur.archlinux.org/cgit/aur.git/tree/README.arch?h=mechrevo-osd-linux)，安装后也可在 `/usr/share/doc/mechrevo-osd-linux/README.arch` 查看。
+
+### 从源码安装
+
 首次安装前检查主板和内核：
 
 ```sh
@@ -67,7 +82,7 @@ mechrevo-osd
 
 默认 `--backend auto`。也可使用 `--backend layer-shell`、`--backend x11`、`--backend notifications`；明确指定的后端不可用时会报错。
 
-## 登录启动
+## 登录启动（源码安装）
 
 使用 XDG Autostart 在登录时启动：
 
@@ -87,7 +102,7 @@ systemctl --user daemon-reload
 systemctl --user enable --now mechrevo-osd.service
 ```
 
-## 升级或重新安装
+## 升级或重新安装（源码安装）
 
 先停止图形进程，再停止绑定服务，然后移除旧 DKMS 注册（版本号按 `dkms status` 的结果填写）；接着执行安装步骤。已有用户服务可用以下命令停止：
 
@@ -100,7 +115,7 @@ sudo dkms remove -m mechrevo-osd -v 0.1.1 --all
 
 安装完成后重新启动绑定服务和图形进程，使新版本生效。
 
-## 停用与卸载
+## 停用与卸载（源码安装）
 
 先停止图形进程，移除你启用的登录启动项：
 

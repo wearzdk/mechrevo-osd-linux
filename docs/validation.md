@@ -8,8 +8,8 @@
 | --- | --- |
 | 当前内核 7.2.4-x64v3-xanmod1-1 | DKMS 构建、签名、安装、加载通过 |
 | 7.2.4-arch1-2 | DKMS 构建、签名、安装通过；未启动该内核 |
-| 6.18.51-1-lts | 0.1.1 模块构建通过；未启动该内核 |
-| 6.18.50-x64v3-xanmod1-2-lts | 0.1.1 模块构建通过；未启动该内核 |
+| 6.18.51-1-lts | 0.1.1 DKMS 构建、签名、安装通过；未启动该内核 |
+| 6.18.50-x64v3-xanmod1-2-lts | 0.1.1 DKMS 构建、签名、安装通过；未启动该内核 |
 | Fn+X 性能模式 | 安静、均衡、性能三档提示通过实机测试 |
 | 键盘背光 | 0、1、2、3 四档状态通过实机测试 |
 | Caps Lock / Num Lock | 开关状态提示通过实机测试 |
@@ -27,5 +27,6 @@
 - 7 项自动测试通过，覆盖事件边界、锁定状态和通知更新。
 - `DESTDIR` 隔离安装和卸载通过；systemd 单元语法检查通过。
 - 本机系统绑定服务与用户服务已启用；尚未重启电脑验证启动全过程。
+- AUR 0.1.1-1：主程序包与 DKMS 包通过本机安装、卸载及重新安装测试；pacman 文件完整性检查通过。
 
 跨桌面通知使用 [freedesktop Desktop Notifications 接口](https://specifications.freedesktop.org/notification/latest-single/)。layer-shell 后端使用 [layer-shell-qt](https://github.com/KDE/layer-shell-qt)。实际位置、图标大小及通知策略以所在桌面实现为准。
