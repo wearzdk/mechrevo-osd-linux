@@ -19,7 +19,7 @@
 
 ## 显示与安装
 
-- Plasma Wayland：layer-shell 悬浮显示已在本机运行。
+- Plasma Wayland：layer-shell 悬浮显示已在本机验证运行。
 - X11：在本机 XWayland 下完成初始化检查；离屏验证了 120×120 图标绘制和自动隐藏。独立 X11 桌面尚未实测。
 - 系统通知：在 Plasma 通知服务中通过状态显示、替换和连续更新测试。
 - GNOME、Sway、Hyprland：待实机测试。

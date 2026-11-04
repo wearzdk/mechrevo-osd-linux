@@ -4,19 +4,19 @@
 
 为**机械革命无界 14X / 14X Pro** 等笔记本提供 Linux 按键状态提示。移植自 Windows 实现，保留原厂图标；按下快捷键，即可看到性能模式、键盘背光、Fn 锁定、触控板及 Caps Lock / Num Lock 状态。
 
-当前适配板型：**MECHREVO WUJIE Series-T142-HPT-R**。其他板型可按[适配指南](docs/hardware-adaptation.md)测试适配。
+当前适配板型：**MECHREVO WUJIE Series-T142-HPT-R**。其他板型可参照[适配指南](docs/hardware-adaptation.md)进行测试适配。
 
-## 让 AI 帮你安装（推荐）
+## 使用 AI 助手安装（推荐）
 
 在目标电脑上打开 Claude Code、Codex 等 AI 编程助手，发送：
 
 > 阅读 https://github.com/wearzdk/mechrevo-osd-linux ，按照 AGENTS.md 检查我的机型、内核和桌面环境，安装并配置 OSD 与登录自动启动，验证按键状态提示。如果型号不同，请检查硬件接口并尝试适配；需要实体按键测试时告诉我。适配成功后提交 PR，帮助更多人使用。
 
-AI 负责安装和配置，你按提示测试实体按键即可。以下说明也供 AI 安装时参考；无需自己逐项研究驱动配置。
+AI 负责安装与配置，用户按提示测试实体按键即可。以下说明亦供 AI 安装时参考，无需逐项研究驱动配置。
 
 ## 快速安装（Arch Linux）
 
-**先准备与你当前内核匹配的头文件。** 例如 Arch 标准 `linux` 内核需要 `linux-headers`，LTS 内核需要 `linux-lts-headers`。可用 `uname -r` 查看当前内核；定制内核的处理见[安装指南](docs/installation.md)。
+**请先准备与当前内核匹配的头文件。** 例如 Arch 标准 `linux` 内核需要 `linux-headers`，LTS 内核需要 `linux-lts-headers`。可使用 `uname -r` 查看当前内核；定制内核的处理方式见[安装指南](docs/installation.md)。
 
 在当前桌面的终端执行：
 
@@ -28,11 +28,11 @@ cp /usr/share/applications/mechrevo-osd.desktop ~/.config/autostart/ &&
 mechrevo-osd --check --check-display
 ```
 
-也可以把 `yay` 换成 `paru`。这会安装程序和 DKMS 驱动、启用系统绑定服务，并配置以后登录时自动显示 OSD。
+也可以把 `yay` 换成 `paru`。该命令将安装程序与 DKMS 驱动、启用系统绑定服务，并配置登录后自动显示 OSD。
 
-**立即试用：**运行 `mechrevo-osd`，按 **Fn+X**、键盘背光键或 **Caps Lock**，查看状态图标。程序在当前终端持续运行；退出后可在下次登录时自动启动。OSD 没有需要一直打开的控制面板。
+**立即试用**：运行 `mechrevo-osd`，按 **Fn+X**、键盘背光键或 **Caps Lock**，查看状态图标。程序在当前终端持续运行；退出后会在下次登录时自动启动。OSD 不提供常驻控制面板。
 
-已有用户服务或手动安装版本时，先让 AI 检查现有启动入口，避免重复配置。其他发行版或源码安装见[安装与维护](docs/installation.md)。
+如已存在用户服务或手动安装版本，请先由 AI 检查现有启动入口，避免重复配置。其他发行版或源码安装见[安装与维护](docs/installation.md)。
 
 ## 桌面兼容性
 
@@ -58,7 +58,7 @@ systemctl status mechrevo-osd-binding.service
 journalctl -u mechrevo-osd-binding.service -b
 ```
 
-检查图形进程是否正在运行，并在使用通知后端时检查勿扰模式。报告问题时附上机型、`uname -r`、桌面环境、X11 / Wayland 会话类型和上述输出。
+检查图形进程是否正在运行，并在使用通知后端时检查勿扰模式。报告问题时请附上机型、`uname -r`、桌面环境、X11 / Wayland 会话类型和上述输出。
 
 ## 更多说明
 

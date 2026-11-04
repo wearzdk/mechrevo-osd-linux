@@ -2,13 +2,13 @@
 
 [返回首页](../README.md) · [English](installation.en.md)
 
-供 AI 助手和需要手动安装、升级或排查的用户参考。先阅读 [AGENTS.md](../AGENTS.md)，确认机型、内核和现有安装来源。
+供 AI 助手及需要手动安装、升级或排查的用户参考。请先阅读 [AGENTS.md](../AGENTS.md)，确认机型、内核与现有安装来源。
 
 ## Arch Linux / AUR
 
 首次安装及登录启动见[首页快速安装](../README.md#快速安装arch-linux)。主程序包 `mechrevo-osd-linux` 自动依赖驱动包 `mechrevo-osd-dkms`。
 
-安装当前内核对应的头文件。Arch 官方 `linux` 使用 `linux-headers`，`linux-lts` 使用 `linux-lts-headers`，`linux-zen` 使用 `linux-zen-headers`；其他内核需使用其对应的头文件包。用 `uname -r` 确认当前内核，不要给定制内核套用标准内核的头文件。
+安装当前内核对应的头文件。Arch 官方 `linux` 使用 `linux-headers`，`linux-lts` 使用 `linux-lts-headers`，`linux-zen` 使用 `linux-zen-headers`；其他内核需使用其对应的头文件包。使用 `uname -r` 确认当前内核，不要为定制内核套用标准内核的头文件。
 
 Wayland 原生悬浮显示还需安装：
 
@@ -63,7 +63,7 @@ AUR 包也附带本地参考文档：`/usr/share/doc/mechrevo-osd-linux/README.a
 - Wayland 悬浮显示：`wayland-info` 和 `layer-shell-qt` 的 QML 模块，适用于支持 layer-shell 的合成器。
 - 系统通知：`dbus-python`（Arch 包名 `python-dbus`）和 `org.freedesktop.Notifications` 会话服务。
 
-Arch Linux 示例（内核头文件请选与你的内核匹配的软件包）：
+Arch Linux 示例（内核头文件请选择与当前内核匹配的软件包）：
 
 ```sh
 sudo pacman -S --needed base-devel dkms pyside6 qt6-declarative qt6-wayland python-dbus wayland-utils layer-shell-qt
@@ -144,7 +144,7 @@ sudo dkms remove -m mechrevo-osd -v 0.1.1 --all
 
 ## 停用与卸载（源码安装）
 
-先停止图形进程，移除你启用的登录启动项：
+先停止图形进程，移除已启用的登录启动项：
 
 ```sh
 rm -f ~/.config/autostart/mechrevo-osd.desktop

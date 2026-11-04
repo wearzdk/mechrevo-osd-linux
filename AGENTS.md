@@ -8,7 +8,7 @@
 2. 确认命令运行在用户要安装 OSD 的 Linux 设备上，收集发行版、内核、DMI 型号、桌面会话和安装来源。
 3. 已支持机型按 README 安装；型号不同则阅读 [机型适配指南](docs/hardware-adaptation.md)，继续检查接口和协议。
 4. 用户要求安装时，完成所需的依赖安装、服务配置和验证。沿用本次会话已有授权，实体按键操作请用户配合。
-5. 缺少管理员权限、设备访问或账号权限时，说明具体阻碍和用户需要完成的步骤；账号登录、注册由用户处理。
+5. 缺少管理员权限、设备访问或账号权限时，说明具体阻碍及用户需要完成的步骤；账号登录与注册由用户自行处理。
 
 建议先读取：
 
@@ -21,11 +21,11 @@ type -a mechrevo-osd
 dkms status
 ```
 
-命令不存在、设备节点不存在或尚未安装服务，也属于检测结果；据此选择下一步。
+命令不存在、设备节点不存在或尚未安装服务均属检测结果，可据此选择下一步。
 
 ## 安装决策
 
-- Arch Linux 上，已有机型支持优先使用 AUR 的 `mechrevo-osd-linux`，驱动由 `mechrevo-osd-dkms` 提供。其他发行版或本地适配使用源码安装。完整安装、迁移与卸载步骤见 [安装与维护](docs/installation.md)（[English](docs/installation.en.md)）。
+- 在 Arch Linux 上，已支持的机型优先使用 AUR 的 `mechrevo-osd-linux`，驱动由 `mechrevo-osd-dkms` 提供。其他发行版或本地适配使用源码安装。完整安装、迁移与卸载步骤见 [安装与维护](docs/installation.md)（[English](docs/installation.en.md)）。
 - 修改过的本地代码按源码或本地包验证；已发布 AUR 包不包含尚未合入的修改。
 - 依赖使用发行版包管理器查询和安装。当前运行环境使用系统 Python、PySide6、Qt Quick 和 dbus-python；`pyproject.toml` 的空依赖列表不是完整的系统依赖清单。
 - 核对当前内核及所有已安装内核的头文件，读取 `driver/dkms.conf` 确认模块版本。AUR 由 pacman 的 DKMS 钩子处理模块，源码安装按 [安装指南](docs/installation.md) 手动注册。
